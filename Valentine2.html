@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            text-align: center;
+            background: url('Peonies.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Brush Script MT', cursive;
+            overflow: hidden;
+            position: relative;
+        }
+        .collage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .collage img {
+            width: 300px;
+            height: auto;
+            opacity: 0.85;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            color: #d63384;
+            font-size: 4.5rem;
+            margin-top: 50px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        p {
+            font-size: 2.2rem;
+            color: darkred;
+            position: relative;
+            z-index: 1;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        button {
+            font-size: 2rem;
+            padding: 18px 28px;
+            border: none;
+            cursor: pointer;
+            border-radius: 15px;
+            transition: 0.3s;
+            font-family: 'Brush Script MT', cursive;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        .yes {
+            background-color: red;
+            color: white;
+        }
+        .yes:hover {
+            background-color: darkred;
+        }
+        .no {
+            background-color: white;
+            color: red;
+            position: absolute;
+            transition: transform 0.4s ease-in-out;
+        }
+        @keyframes hearts {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 2.2rem;
+            animation: hearts 4s linear infinite;
+        }
+    </style>
+    <script>
+        function moveButton() {
+            let button = document.querySelector(".no");
+            let x = Math.random() * (window.innerWidth - button.clientWidth);
+            let y = Math.random() * (window.innerHeight - button.clientHeight);
+            button.style.transform = `translate(${x}px, ${y}px)`;
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector(".no").addEventListener("mouseover", moveButton);
+        });
+        function showLove() {
+            alert("Yay! I love you! ❤️");
+            document.body.innerHTML += '<h2>Can\'t wait for our Virtual Valentine\'s date! ❤️</h2>';
+            document.getElementById("loveSong").play();
+        }
+        function createHearts() {
+            let heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.top = "100vh";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }
+        setInterval(createHearts, 300);
+    </script>
+</head>
+<body>
+    <div class="collage">
+        <img src="download (1).jpg" alt="Collage Image">
+    </div>
+    <h1>Will you be my Valentine, My dear Princess Anganao?</h1>
+    <p> Please??? 🙇‍♂️🙇‍♂️🙇‍♂️🙇‍♂️🙇‍♂️ Even Mr Cat is here to hear your answer (Yes, he finally got a body) </p>
+    <div class="buttons">
+        <button class="yes" onclick="showLove()">Yes</button>
+        <button class="no">No</button>
+    </div>
+    <audio id="loveSong" loop>
+        <source src="yung_kai_-_blue_.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+</body>
+</html>
